@@ -1,7 +1,3 @@
-
-/*##############################################
-            DECLARANDO VARIÁVEIS
-##############################################*/
 let cdi = 3.40;
 
 let valor_investido = 100;
@@ -11,37 +7,46 @@ let rendimento_cdi= 100;
 let prazo_mensal = 1;
 
 //Calculando CDI BRUTO MENSAL//
-const cdi_mensal = ((( cdi * rendimento_cdi ) / 100) / 12).toFixed(2)
+const cdi_mensal = parseFloat(((( cdi * rendimento_cdi ) / 100) / 12).toFixed(2))
 
-Juros(cdi_mensal, valor_investido, valor_mensal, prazo_mensal)
 
-let resultado = {}
+
+/*##############################################
+            CHAMANDO AS FUNÇÕES
+##############################################*/
+
+const juros_res = Juros(cdi_mensal, valor_investido, valor_mensal, prazo_mensal)
+
+const irrf_res = IRRF(juros_res[0], juros_res[1]);
+
+console.log(irrf_res)
+
 
 /*##############################################
             CALCULANDO JUROS + MENSAL
 ##############################################*/
 
-function Juros(cdi, v_inicial, v_mensal, prazo){
+function Juros(cdi, v_inicial, v_mensal = 0, prazo = 0){
 
     let valorBruto = v_inicial;
     let valorJuros = 0;
 
+    //Verificando se os meses são maiores que 0
     if(prazo > 0){
+        
+        //Adicionando o valor + CDI mensal pra cada mês 
         for(i = 0; i < prazo; i++ ) {
             valorBruto += v_mensal;
             valorJuros += ( cdi * valorBruto ) / 100
         }
+        
+        return[parseFloat(valorBruto.toFixed(2)), parseFloat(valorJuros.toFixed(2))]
     }
     else{
-        console.log(`Campo inválido`)
+        return[`Inválido`,`Inválido`]
     }
-
-    return[valorBruto, valorJuros]
-    //IRRF(valorBruto, valorJuros)
 }
 
-let te = Juros();
-console.log(te)
 
 /*##############################################
            CALCULANDO IRRF (imposto)
@@ -49,51 +54,32 @@ console.log(te)
 
 function IRRF(valor, juros){
     
-    const depositado = valor;
-    const juross = juros;
-    const total = juros + valor;
-
-    const irrf = (juros * 22.5) / 100;
+    const irrf = ((juros * 22.5) / 100);
     const jurosirrf = juros - irrf;
     const valortotal = valor + jurosirrf;
 
-/*
-    let resultado = {
-        depositado: 0,
-        juros: 0,
-        total: 0,
-
-        irrf: 0,
-        juros_irrf: 0,
-        total_irrf: 0
-      };
-
-
-    resultado.depositado = valor;
-    resultado.juros = juros;
-    resultado.total = (juros + valor)
-
-    resultado.irrf = irrf
-    resultado.juros_irrf = jurosirrf
-    resultado.total_irrf = valortotal
-*/
-
     return {
-        depositado,
-        juross,
-        total
+        //Sem IRRF
+        v_depositado: (valor).toFixed(2),
+        juros: (juros).toFixed(2),
+        total: (juros + valor).toFixed(2),
+
+        //Com IRRF
+        IRRF: irrf.toFixed(2),
+        jurosIRRF: jurosirrf.toFixed(2),
+        totalIRRF: valortotal.toFixed(2),
     }
 }
 
-function teste(){
-    let a = 1
-    let b = 4
-    
-    return { a, b}
-}
+/* 
+    PRECISO RECEBER
 
-let retorno = IRRF();
+    > Valor total depositado:
+    > Juros que rendeu
+    > Total SEM os impostos (IRRF)
 
-
-
-console.log(retorno)
+    > Valor total dos impostos (IRRF)
+    > Valor dos Juros COM desconto
+    > Valor total dos rendimentos COM imposto descontado (IRRF)
+ 
+ */
