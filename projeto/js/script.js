@@ -1,6 +1,6 @@
 let cdi = 3.40;
 
-let valor_investido = 100;
+let valor_investido = 0;
 let valor_mensal = 0;
 
 let rendimento_cdi= 100;
@@ -12,19 +12,38 @@ const cdi_mensal = parseFloat(((( cdi * rendimento_cdi ) / 100) / 12).toFixed(2)
 
 
 /*##############################################
-            CHAMANDO AS FUNÇÕES
+     ATUALIZANDO OS DADOS CHAMANDO AS FUNÇÕES
 ##############################################*/
 
-const juros_res = Juros(cdi_mensal, valor_investido, valor_mensal, prazo_mensal)
 
-const irrf_res = IRRF(juros_res[0], juros_res[1]);
+function Update_data(){
 
-console.log(irrf_res)
+    //Atualizando os dados
+    valor_investido = parseFloat(document.querySelector('#v_inicial').value)
+    valor_mensal = parseFloat(document.querySelector('#v_mensal').value)
+    
+    rendimento_cdi = parseFloat(document.querySelector('#cdi_porcent').value)
+    prazo_mensal = parseFloat(document.querySelector('#prazo').value)
 
 
+    //Chamando as funções
+    const juros_res = Juros(cdi_mensal, valor_investido, valor_mensal, prazo_mensal)
+    const irrf_res = IRRF(juros_res[0], juros_res[1]);
+
+    console.log(irrf_res)
+}   
+
+
+//Para mostrar os resultados
+function Show(){
+        
+}
+
+    
 /*##############################################
-            CALCULANDO JUROS + MENSAL
+   CALCULANDO O INVESTIMENTO + JUROS (SEM IRRF)
 ##############################################*/
+
 
 function Juros(cdi, v_inicial, v_mensal = 0, prazo = 0){
 
@@ -40,7 +59,7 @@ function Juros(cdi, v_inicial, v_mensal = 0, prazo = 0){
             valorJuros += ( cdi * valorBruto ) / 100
         }
         
-        return[parseFloat(valorBruto.toFixed(2)), parseFloat(valorJuros.toFixed(2))]
+        return[parseFloat(valorBruto), parseFloat(valorJuros.toFixed(2))]
     }
     else{
         return[`Inválido`,`Inválido`]
@@ -71,6 +90,7 @@ function IRRF(valor, juros){
     }
 }
 
+
 /* 
     PRECISO RECEBER
 
@@ -81,5 +101,4 @@ function IRRF(valor, juros){
     > Valor total dos impostos (IRRF)
     > Valor dos Juros COM desconto
     > Valor total dos rendimentos COM imposto descontado (IRRF)
- 
  */
