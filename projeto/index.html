@@ -20,11 +20,23 @@
         </nav>
     </header>
     <main>
+
         <div class="cdi"> 
              <p>TAXA CDI HOJE:  <span id="v_cdi" class="cdi"> 0% </span></p>
         </div>
-        <section id="calc">
 
+        <section id="calc">
+            <form id="calc_form">
+                <label for="v_inicial"> Valor Investido (R$): </label> <br> <input type="number" id="v_inicial">
+                <br>
+                <label for="v_mensal">Valor mensal (R$): </label> <br> <input type="number" id="v_mensal">
+                <br>
+                <label for="cdi_porcent" >Insira o percentual sobre o CDI (DI): </label> <br> <input type="number" id="cdi_porcent">
+                <br>
+                <label for="prazo"> Prazo (MESES): </label> <br> <input type="number" id="prazo">
+                <br>
+                <input type="button" value="Calcular">
+            </form>
         </section>
     </main>
     <footer>
