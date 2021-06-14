@@ -9,7 +9,6 @@
     --blue-color:rgb(70, 109, 180);
     --light-color:#f0f8ff;
 }
-
 /*##############################################
                 MENU DE NAVEGAÇÃO
 ##############################################*/
@@ -107,11 +106,14 @@ main{
     display: flex;
 
     width: 100%;
-    padding: 50px 20px;
+    padding: 30px 20px;
 
     align-items: center;
     justify-content: center;
 
+    position: absolute;
+    z-index: 3;
+    left: -150px;
 }
 
 #calc_form{
@@ -120,6 +122,7 @@ main{
 
     border-radius: 10px;
     box-shadow: 0px 0px 20px 2px #0000003b;
+    height: 400px;
 }
 #calc_form label{
     font-size: 1.2em;
@@ -151,4 +154,66 @@ main{
 
     background-color: var(--light-color);
     cursor: pointer;
+}
+
+/*##############################################
+                RESULTADO
+##############################################*/
+#show{
+    display: flex;
+    padding: 40px ;
+    padding-left: 0px;
+
+    width: 400px;
+    height: 400px;
+
+    position: relative;
+    z-index: 1;
+
+    left: 650px;
+    top: 30px;
+
+    border-radius: 0px 20px 20px 0px ;
+    overflow: hidden;
+    transition: 1s;
+    background-color: tomato;
+}
+
+#show_res{
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.res{
+    display: inline-block;
+    margin-bottom:20px ;
+    padding: 5px;
+    padding-left: 50px;
+    
+    font-size: 1.15em;
+    background-color: #f0fbff;
+    min-height: 35px;
+
+    border-bottom:2px solid #1e2f3d;
+    
+}
+
+.res.p{
+    font-weight: bold;
+    width: 60%;
+}
+#show_res span{
+    font-size: 1.2em;
+    display: flex;
+    align-self: center;
+    text-align: center;
+
+    width: 40%;
+    
+    border-radius: 0px 10px 10px 0px;
+}
+
+#show.active #show{
+    
 }

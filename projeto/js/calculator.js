@@ -1,4 +1,4 @@
-let cdi = 3.40;
+const cdi = 3.40;
 
 let valor_investido = 0;
 let valor_mensal = 0;
@@ -7,7 +7,12 @@ let rendimento_cdi= 100;
 let prazo_mensal = 1;
 
 //Calculando CDI BRUTO MENSAL//
-const cdi_mensal = parseFloat(((( cdi * rendimento_cdi ) / 100) / 12).toFixed(2))
+const cdi_mensal = parseFloat(((( cdi * rendimento_cdi ) / 100) / 12).toFixed(2));
+
+
+//Mostrando CDI para o usuário
+let teste = document.querySelector('#v_cdi');
+teste.innerHTML = String(cdi.toFixed(2)).replace(".", ",");
 
 
 
@@ -30,13 +35,29 @@ function Update_data(){
     const juros_res = Juros(cdi_mensal, valor_investido, valor_mensal, prazo_mensal)
     const irrf_res = IRRF(juros_res[0], juros_res[1]);
 
+    //Para mostrar os resultados
+    const depositado_HTML = document.querySelector('#depositado_HTML')
+    const juros_HTML = document.querySelector('#juros_HTML')
+    const total_HTML = document.querySelector('#total_HTML')
+
+    const IRRF_HTML = document.querySelector('#IRRF_HTML')
+    const jurosIRRF_HTML = document.querySelector('#jurosIRRF_HTML')
+    const totalIRRF_HTML = document.querySelector('#totalIRRF_HTML')
+
+    depositado_HTML.innerHTML = irrf_res.depositado
+    juros_HTML.innerHTML = irrf_res.juros
+    total_HTML.innerHTML = irrf_res.total
+
+    IRRF_HTML.innerHTML = irrf_res.IRRF
+    jurosIRRF_HTML.innerHTML = irrf_res.jurosIRRF
+    totalIRRF_HTML.innerHTML = irrf_res.totalIRRF
+    
     console.log(irrf_res)
 }   
 
 
-//Para mostrar os resultados
 function Show(){
-        
+    
 }
 
     
@@ -79,7 +100,7 @@ function IRRF(valor, juros){
 
     return {
         //Sem IRRF
-        v_depositado: (valor).toFixed(2),
+        depositado: (valor).toFixed(2),
         juros: (juros).toFixed(2),
         total: (juros + valor).toFixed(2),
 

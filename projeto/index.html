@@ -22,7 +22,7 @@
     <main>
 
         <div class="cdi"> 
-             <p>TAXA CDI HOJE:  <span id="v_cdi" class="cdi"> 0% </span></p>
+             <p>TAXA CDI HOJE:  <btn id="v_cdi" class="cdi">0</btn>%</p> 
         </div>
 
         <section id="calc">
@@ -37,8 +37,18 @@
                 <br>
                 <input type="button" value="Calcular" onclick="Update_data()">
             </form>
+        </section>
 
-            
+        <section id="show">
+            <div id="show_res">
+                <p class="res p"> Valor depositado:</p><span class="res" id="depositado_HTML"> 0 </span> <br>
+                <p class="res p"> Juros SEM IRRF: </p><span class="res" id="juros_HTML">0 </span> <br>
+                <p class="res p"> Total: </p><span class="res" id="total_HTML">0 </span> <br>
+
+                <p class="res p"> IRRF: </p><span class="res" id="IRRF_HTML">0 </span> <br>
+                <p class="res p"> Juros COM IRRF:</p><span class="res" id="jurosIRRF_HTML">0 </span> <br>
+                <p class="res p"> Total COM IRRF: </span></p><span class="res" id="totalIRRF_HTML">0 </span> <br>
+            </div>
         </section>
     </main>
     <footer>
