@@ -134,6 +134,7 @@ main{
     height: 30px;
 
     font-size: 1.2em; 
+    text-align: center;
 }
 
 #calc_form input[type='button']{
