@@ -7,7 +7,7 @@ let rendimento_cdi= 100;
 let prazo_mensal = 1;
 
 //Calculando CDI BRUTO MENSAL//
-const cdi_mensal = parseFloat(((( cdi * rendimento_cdi ) / 100) / 12).toFixed(2));
+
 
 
 //Mostrando CDI para o usuário
@@ -29,7 +29,8 @@ function Update_data(){
     
     rendimento_cdi = parseFloat(document.querySelector('#cdi_porcent').value)
     prazo_mensal = parseFloat(document.querySelector('#prazo').value)
-
+    const cdi_mensal = parseFloat(((( cdi * rendimento_cdi ) / 100) / 12).toFixed(2));
+    
 
     //Chamando as funções
     const juros_res = Juros(cdi_mensal, valor_investido, valor_mensal, prazo_mensal)
@@ -53,6 +54,7 @@ function Update_data(){
     totalIRRF_HTML.innerHTML = irrf_res.totalIRRF
     
     console.log(irrf_res)
+    console.log(rendimento_cdi)
 }   
 
 
